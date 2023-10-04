@@ -227,7 +227,7 @@ export default {
       userEmail: '',
       email_error: '',
       loading: false,
-      sideImg: require('@/assets/images/pages/login-v2.svg'),
+      sideImg: require('@/assets/images/pages/register-v2.svg'),
       // validation rulesimport store from '@/store/index'
       required,
       email,
@@ -240,7 +240,7 @@ export default {
     imgUrl() {
       if (store.state.appConfig.layout.skin === 'dark') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.sideImg = require('@/assets/images/pages/login-v2-dark.svg')
+        this.sideImg = require('@/assets/images/pages/register-v2-dark.svg')
         return this.sideImg
       }
       return this.sideImg
