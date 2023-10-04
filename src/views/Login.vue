@@ -45,10 +45,8 @@
             title-tag="h4"
             class="font-weight-bold mb-1"
           >
-            <span class="text-success h3">Welcome to: </span> <br> Enterprise Incoming and Outgoing Mails and Documents
-            Management System <br>
-            <span class="text-success h6"> Tracking and Follow-Up</span>
-
+            <span class="text-success h3">Welcome to: </span> <br> ASSET MANAGEMENT AND TRACKING FOR ACCOUNTABILITY <br>
+           
           </b-card-title>
           <b-card-text class="mb-2">
             Please sign-in to your account.
