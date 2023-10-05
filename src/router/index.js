@@ -174,6 +174,15 @@ const router = new VueRouter({
     },
 
     {
+      path: '/contractor-application',
+      name: 'contractor-application',
+      component: () => import('@/views/error/ContractorApplication.vue'),
+      meta: {
+        layout: 'full',
+      },
+    },
+
+    {
       path: '*',
       redirect: 'error-404',
     },
@@ -189,7 +198,7 @@ router.afterEach(() => {
   if (appLoading) {
     appLoading.style.display = 'none'
   }
-  if (localStorage.getItem('token') || router.currentRoute.name === 'register' || router.currentRoute.name === 'track-submission') {
+  if (localStorage.getItem('token') || router.currentRoute.name === 'register' || router.currentRoute.name === 'track-submission' || router.currentRoute.name === 'contractor-application') {
     console.log('yes')
     // eslint-disable-next-line no-undef
     // next()

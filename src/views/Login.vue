@@ -114,6 +114,18 @@
                 </validation-provider>
               </b-form-group>
 
+
+              <div class="form-group">
+                <label for="select-role">Select Designation:</label>
+                <select name="" id="select-role" class="form-control">
+                  <option>- Select Designation -</option>
+                  <option>Per. Sec</option>
+                  <option>Director Procurement</option>
+                  <option>Director General Services</option>
+                  <option>Department Head</option>
+                </select>
+              </div>
+
               <!-- checkbox -->
               <b-form-group>
                 <b-form-checkbox
