@@ -6,8 +6,8 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h6>Total Submissions</h6>
-              <h3>102</h3>
+              <h4>Contractor Applications</h4>
+              <h5>0</h5>
 
             </div>
           </div>
@@ -16,8 +16,8 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h6>Total Completed</h6>
-              <h3>12</h3>
+              <h4>Executed Projects</h4>
+              <h5>0</h5>
 
             </div>
           </div>
@@ -33,8 +33,12 @@
 
           <div class="card">
             <div class="card-body">
-              <h4>Submission </h4>
-              <h6>Your submission has been logged successfully</h6>
+             
+
+                <h4 class="text-warning">New Application </h4>
+                <hr>
+              
+              <h6>Your have a new contractor application submission by Deicon Nig. Ltd.</h6>
             </div>
           </div>
 

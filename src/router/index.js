@@ -85,6 +85,21 @@ const router = new VueRouter({
     },
 
     {
+      path: '/create-ad',
+      name: 'create-ad',
+      component: () => import('@/views/CreateAdvert.vue'),
+      meta: {
+        pageTitle: 'Create Advert',
+        breadcrumb: [
+          {
+            text: 'Create Advert',
+            active: true,
+          },
+        ],
+      },
+    },
+
+    {
       path: '/departments',
       name: 'departments',
       component: () => import('@/views/Departments.vue'),

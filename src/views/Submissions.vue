@@ -5,10 +5,10 @@
       <div class="row">
         <div class="col-md-12">
 
-          <div class="mx-auto py-5 text-center">
-            <router-link :to="'/create-submission'">
+          <div v-show="userData.role=='perm-sec'" class="mx-auto py-5 text-center">
+            <router-link :to="'/create-ad'">
               <buttons class="btn btn-primary btn-lg">
-                Create Submission
+                Create Advertisment
               </buttons>
             </router-link>
           </div>
@@ -20,14 +20,33 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Tracking ID</th>
+                    <th>Contractor Name</th>
                     <th>Department</th>
                     <th>Date</th>
                     <th>Status</th>
-                    <th />
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>De Icon Nig Ltd.</td>
+                    <td>Accounting</td>
+                    <td>10-09-2023</td>
+                    <td><span class="badge badge-primary">pending confirmation</span></td>
+                    <td>
+                      <b-dropdown
+                        id="dropdown-1"
+                        v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+                        text="Action"
+                        variant="primary"
+                      >
+                        <b-dropdown-item>View</b-dropdown-item>
+                        <b-dropdown-item>Authorize</b-dropdown-item>
+                        <b-dropdown-item>Notify Perm. Sec.</b-dropdown-item>
+                      </b-dropdown>
+                    </td>
+                  </tr>
                   <tr v-for="submission,key in submissions" :key="submission.index">
                     <td>{{ key +1 }}</td>
                     <td>
@@ -58,21 +77,28 @@
 
 <script>
 import axios from 'axios'
+import { BDropdown, BDropdownItem, BCardText } from 'bootstrap-vue'
 
 export default {
   components: {
 
+    BDropdown,
+    BDropdownItem,
+    // eslint-disable-next-line vue/no-unused-components
+    BCardText,
   },
 
   data() {
     return {
       submissions: [],
+      userData: '',
 
     }
   },
 
   mounted() {
     this.getSubmissions()
+    this.userData = JSON.parse(localStorage.getItem('user_data'));
   },
 
   methods: {

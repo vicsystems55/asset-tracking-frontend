@@ -13,11 +13,19 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Department</th>
-                                        <th>Status</th>
+                                        <th>Departments</th>
+                                        <th>Department Head</th>
                                         <th></th>
                                     </tr>
                                 </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Accounting</td>
+                                        <td>Mr. Sani Kadiru</td>
+                                    </tr>
+                                </tbody>
                             </table>
 
                         </div>
