@@ -197,6 +197,15 @@ const router = new VueRouter({
       },
     },
 
+        {
+      path: '/department-request',
+      name: 'department-request',
+      component: () => import('@/views/error/DepartmentRequest.vue'),
+      meta: {
+        layout: 'full',
+      },
+    },
+
     {
       path: '*',
       redirect: 'error-404',

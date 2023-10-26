@@ -8,37 +8,11 @@
           <div class="card col-md-6 mx-auto">
             <div class="card-body ">
 
-              <div class="form-group">
-                <label for="">Full name</label>
-                <input
-                  v-model="name"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter your name"
-                >
-              </div>
 
               <div class="form-group">
-                <label for="">Email</label>
-                <input
-                  v-model="email"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter email"
-                >
-              </div>
-              <div class="form-group">
                 <label for="">Select Department:</label>
-                <select
-                  id=""
-                  v-model="office_id"
-                  class="form-control"
-                >
-                  <option
-                    v-for="office in offices"
-                    :key="office.index"
-                    :value="office.id"
-                  >
+                <select id="" v-model="office_id" class="form-control">
+                  <option v-for="office in offices" :key="office.index" :value="office.id">
                     {{ office.name }}
                   </option>
                 </select>
@@ -46,78 +20,32 @@
 
               <div class="form-group">
                 <label for="">Title</label>
-                <input
-                  v-model="title"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter title or subject"
-                >
+                <input v-model="title" type="text" class="form-control" placeholder="Enter title or subject">
               </div>
 
               <div class="form-group">
-                <label for="">From Address</label>
-                <input
-                  v-model="from_address"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter senders address"
-                >
+                <label for="brief">Description:</label>
+                <textarea name="brief" id="brief" cols="30" rows="10" placeholder="Enter brief of submission"
+                  class="form-control" v-model="brief"></textarea>
               </div>
 
-              <div class="form-group">
-                <label for="">Select Submission format</label>
-                <select
-                  id=""
-                  v-model="submission_format"
-                  name=""
-                  class="form-control"
-                >
-                  <option :value="'Check'">
-                    Cheque
-                  </option>
-                  <option :value="'Letter'">
-                    Letter
-                  </option>
-                  <option :value="'Document'">
-                    Document
-                  </option>
-                  <option :value="'Proposal'">
-                    Proposal
-                  </option>
-                  <option :value="'File'">
-                    File
-                  </option>
 
-                </select>
-              </div>
 
               <div class="form-group">
                 <label for="">Date</label>
-                <input
-                  v-model="submission_date"
-                  type="date"
-                  class="form-control"
-                >
+                <input v-model="submission_date" type="date" class="form-control">
               </div>
 
               <div class="form-group">
                 <label for="">Phone</label>
-                <input
-                  v-model="phone"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Phone"
-                >
+                <input v-model="phone" type="text" class="form-control" placeholder="Enter Phone">
               </div>
 
               <div class="form-group">
                 <label for="">Upload file:</label>
 
-                <b-form-file
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-                  no-drop
-                />
+                <b-form-file placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here..."
+                  no-drop />
 
               </div>
 
@@ -135,11 +63,8 @@
 
               <div class="form-group">
 
-                <button
-                  class="btn btn-primary btn-lg btn-block"
-                  @click="createSubmission()"
-                >
-                  {{ loadingy?'Please wait...':'Submit' }}
+                <button class="btn btn-primary btn-lg btn-block" @click="createSubmission()">
+                  {{ loadingy ? 'Please wait...' : 'Submit' }}
                 </button>
 
               </div>

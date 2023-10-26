@@ -13,24 +13,18 @@
 
           <div class="scroll-card   overflow-auto  p-2">
 
-            <div v-for="submissionStatus, key in submissionStatuses" :key="submissionStatus.index"
-              style="min-height: 150px; max-width: 300px;" class="card  m-1 border border-prim ard   bg-succe ">
+            <div 
+              style="min-height: 150px; min-width: 300px;" class="card  m-1 border border-prim ard   bg-succe ">
               <div class="card-body">
 
-                <h6 class="">Title: <span style="font-weight: bold;" class="font-weight-bold"> {{
-                  submissionStatus.visitors_submission.title }}</span></h6>
-                <h6 class="">From: <span style="font-weight: bold;" class="font-weight-bold"> {{
-                  submissionStatus.visitors_submission.from_address }}</span></h6>
-                <h6 class="">To: <span style="font-weight: bold;" class="font-weight-bold"> {{
-                  submissionStatus.visitors_submission.from_address }}</span></h6>
-
-                <h6 class="">Date: {{ submissionStatus.created_at }}</h6>
-                <p>Remark: {{ submissionStatus.remark }}</p>
+                <h6 class="">Contractor Name: <span style="font-weight: bold;" class="font-weight-bold"> {{
+                  submission.contractor_name}}</span></h6>
+           
 
 
               </div>
 
-              <app-collapse v-if="userData.role != 'visitor'" accordion>
+              <!-- <app-collapse v-if="userData.role != 'visitor'" accordion>
                 <app-collapse-item title="Action">
                   <div class="form-group">
                     <label for="">Remark</label>
@@ -49,7 +43,7 @@
                   </div>
                 </app-collapse-item>
 
-              </app-collapse>
+              </app-collapse> -->
 
 
 
@@ -100,18 +94,18 @@ export default {
   mounted() {
     this.userData = JSON.parse(localStorage.getItem('user_data'));
 
-    this.getSubmissionStatus()
-    this.getOffices()
+    // this.getSubmissionStatus()
+    this.getSubmission()
   },
 
   methods: {
-    getOffices() {
+    getSubmission() {
       axios({
-        url: `${process.env.VUE_APP_BACKEND_URL}/api/offices`,
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/contractor-applications/${this.$route.params.id}`,
         method: 'get',
       }).then(res => {
         console.log(res)
-        this.offices = res.data
+        this.submission = res.data
       }).catch(error => {
         console.log(error)
       })
