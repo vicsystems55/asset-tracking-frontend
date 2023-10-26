@@ -20,15 +20,15 @@
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th>Application ID</th>
                     <th>Contractor Name</th>
-                    <th>Department</th>
-                    <th>Date</th>
+                    <th>Date Submitted</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <!-- <tr>
                     <td>1</td>
                     <td>De Icon Nig Ltd.</td>
                     <td>Accounting</td>
@@ -46,19 +46,37 @@
                         <b-dropdown-item>Notify Perm. Sec.</b-dropdown-item>
                       </b-dropdown>
                     </td>
-                  </tr>
+                  </tr> -->
                   <tr v-for="submission,key in submissions" :key="submission.index">
                     <td>{{ key +1 }}</td>
                     <td>
                       <router-link :to="'/submission/'+submission.id">
-                        {{submission.tracking_code}}
+                        {{submission.id + '00000000'}}
                       </router-link>
 
                     </td>
-                    <td>{{submission.office.name}}</td>
-                    <td>{{submission.date}}</td>
+                    <td>{{submission.contractor_name}}</td>
+                    <td>{{submission.created_at}}</td>
                     <td>
                       <span class="badge badge-primary">pending</span>
+                    </td>
+
+                    <td>
+                      <b-dropdown
+                        id="dropdown-1"
+                        v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+                        text="Action"
+                        variant="primary"
+                      >
+                        <b-dropdown-item>
+
+                          <router-link :to="'/submission/'+submission.id">
+                            View
+                      </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>Authorize</b-dropdown-item>
+                        <b-dropdown-item>Notify Perm. Sec.</b-dropdown-item>
+                      </b-dropdown>
                     </td>
 
                   </tr>
@@ -105,7 +123,7 @@ export default {
 
     getSubmissions() {
       axios({
-        url: `${process.env.VUE_APP_BACKEND_URL}/api/visitor-submissions`,
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/contractor-applications`,
         method: 'get',
       }).then(res => {
         console.log(res)

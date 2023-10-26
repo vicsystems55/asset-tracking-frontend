@@ -42,10 +42,10 @@
           class="px-xl-2 mx-auto"
         >
           <b-card-title
-            title-tag="h4"
+            title-tag="h6"
             class="font-weight-bold mb-1"
           >
-            <span class="text-success h3">Welcome to: </span> <br> ASSET MANAGEMENT AND TRACKING FOR ACCOUNTABILITY <br>
+            <span class="text-success">Welcome to: </span> <br> ASSET MANAGEMENT AND TRACKING FOR ACCOUNTABILITY <br>
            
           </b-card-title>
           <b-card-text class="mb-2">

@@ -2,59 +2,56 @@
   <!-- Error page-->
   <div class="container py-2">
     <b-link class="brand-logo d-flex justify-content-center">
-        <img class="text-center" style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt=""> <br>
+      <img class="text-center" style="max-height: 50px;" src="@/assets/images/logo/logo.png" alt=""> <br>
 
-        <h5 class="brand-text text-primary ml-1 mb-5">
-          Federal Ministry of  <br> <span class="">Finance, Budget and National Planning</span> 
-        </h5>
+      <h5 class="brand-text text-primary ml-1 mb-5">
+        Federal Ministry of <br> <span class="">Finance, Budget and National Planning</span>
+      </h5>
     </b-link>
 
     <div class="misc-inne p-2 p-sm-3">
       <div class="w-100 text-cente">
         <h3 class="mb-1 text-center">
-         Contractor Application Form
+          Contractor Application Form
         </h3>
-       
 
-        <div style="max-width: 400px;" class="col-md- mx-auto">
-            <div class="form-group">
-                <label for="">Contractor Name:</label>
-                <input type="text" class="form-control " placeholder="Enter Contractor Name:">
-            </div>
-            <div class="form-group">
-                <label for="">Contractor Address:</label>
-                <input type="text" class="form-control " placeholder="Enter Contractor Address:">
-            </div>
-            <div class="form-group">
-                <label for="">RC Number:</label>
-                <input type="text" class="form-control " placeholder="Enter Contractor RC Number:">
-            </div>
-            <div class="form-group">
-                <label for="">Phone:</label>
-                <input type="text" class="form-control " placeholder="Enter Contractor Phone:">
-            </div>
-            <div class="form-group">
-                <label for="">Email:</label>
-                <input type="text" class="form-control " placeholder="Enter Contractor Email:">
-            </div>
-            <div class="form-group">
-                <label for="">Brief:</label>
-                <textarea name="" id="" cols="30" rows="10" placeholder="Enter brief of submission" class="form-control"></textarea>
-            </div>
 
-            <b-button
-            variant="primary"
-            class="mb-2 mt-2 btn-sm-block btn-block"
-            :to="{path:'/'}"
-            >
+
+        <div style="max-width: 400px;" class="col-md mx-auto">
+          <div class="form-group">
+            <label for="contractorName">Contractor Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Contractor Name:" v-model="contractor_name">
+          </div>
+          <div class="form-group">
+            <label for="contractorAddress">Contractor Address:</label>
+            <input type="text" class="form-control" placeholder="Enter Contractor Address:" v-model="contractor_address">
+          </div>
+          <div class="form-group">
+            <label for="rcNumber">RC Number:</label>
+            <input type="text" class="form-control" placeholder="Enter Contractor RC Number:" v-model="rc_number">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" placeholder="Enter Contractor Phone:" v-model="phone">
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" placeholder="Enter Contractor Email:" v-model="email">
+          </div>
+          <div class="form-group">
+            <label for="brief">Brief:</label>
+            <textarea name="brief" id="brief" cols="30" rows="10" placeholder="Enter brief of submission"
+              class="form-control" v-model="brief"></textarea>
+          </div>
+
+          <b-button variant="primary" class="mb-2 mt-2 btn-sm-block btn-block" @click="submitContractorApplication">
             Submit
-            </b-button>
-
+          </b-button>
         </div>
 
 
 
- 
+
 
         <!-- image -->
         <!-- <b-img
@@ -65,7 +62,7 @@
       </div>
     </div>
   </div>
-<!-- / Error page-->
+  <!-- / Error page-->
 </template>
 
 <script>
@@ -73,6 +70,9 @@
 import { BLink, BButton, BImg } from 'bootstrap-vue'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import store from '@/store/index'
+import axios from 'axios'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+
 
 export default {
   components: {
@@ -84,6 +84,15 @@ export default {
   data() {
     return {
       downImg: require('@/assets/images/pages/error.svg'),
+
+      contractor_name: '',
+      contractor_address: '',
+      rc_number: '',
+      phone: '',
+      email: '',
+      brief: '',
+
+      loadingy: false
     }
   },
   computed: {
@@ -95,6 +104,56 @@ export default {
       }
       return this.downImg
     },
+  },
+  methods: {
+
+    submitContractorApplication() {
+
+      this.loadingy = true
+      axios({
+        url: `${process.env.VUE_APP_BACKEND_URL}/api/contractor-applications`,
+        method: 'post',
+        data: {
+          contractor_name: this.contractor_name,
+          contractor_address: this.contractor_address,
+          rc_number: this.rc_number,
+          phone: this.phone,
+          email: this.email,
+          brief: this.brief,
+        },
+      }).then(res => {
+        this.loadingy = false
+        console.log(res)
+
+        this.$toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Application Submitted',
+            icon: 'EditIcon',
+            variant: 'success',
+          },
+        })
+
+        this.$router.push('/submission-success')
+      }).catch(error => {
+        this.loadingy = false
+
+        this.$toast({
+          component: ToastificationContent,
+          props: {
+            title: error.response.data.errors.email.toString(),
+            icon: 'EditIcon',
+            variant: 'danger',
+          },
+        })
+
+        console.log(error)
+      })
+
+    }
+
+
+
   },
 }
 </script>

@@ -5,6 +5,12 @@
       <div class="">
         <div class="">
 
+
+            <div class="text-center py-2">
+              <a href="" class="btn btn-warning" aria-disabled="">Issue Authorization Letter</a>
+
+            </div>
+
           <div class="scroll-card   overflow-auto  p-2">
 
             <div v-for="submissionStatus, key in submissionStatuses" :key="submissionStatus.index"
@@ -82,6 +88,7 @@ export default {
   data() {
     return {
       submissionStatuses: [],
+      submission: [],
       offices: [],
       office_id: '',
       remark: '',
